@@ -1,0 +1,266 @@
+/* --- GLOBAL STYLING --- */
+html {
+    background-color: #333;
+}
+
+body {
+    background-color: #ede2c9;
+    margin: 15px;
+    font-family: sans-serif;
+    border: 4px solid #000000;
+    padding: 20px;
+    min-height: 95vh;
+    box-sizing: border-box;
+}
+
+/* --- NAVIGASJON --- */
+.hoved-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.nav-venstre {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.hjem-knapp {
+    background-color: #ffecdc;
+    color: #000000;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.hjem-knapp:hover {
+    background-color: transparent;
+}
+
+.nav-knapp {
+    background-color: transparent;
+    color: #000000;
+    padding: 8px 12px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.nav-knapp:hover {
+    background-color: #000000;
+    color: #f5f2eb;
+}
+
+.hemmelig-knapp {
+    border-color: #ff6868;
+    color: #ff6868;
+}
+
+.hemmelig-knapp:hover {
+    background-color: #ff6868;
+    color: #ffffff;
+}
+
+.nav-tittel {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.12em;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.nav-navn {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* --- FORSIDE (Bilde & Bokhylle) --- */
+.hjem-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.hjem-bilde img {
+    max-width: 400px;
+    height: auto;
+    border: 15px solid #ffffff;
+    outline: 6px solid #54321f;
+}
+
+.bokhylle {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    height: 200px;
+    border-bottom: 15px solid #5d2e0a;
+    padding-bottom: 5px;
+    min-width: 300px;
+}
+
+/* Generell stil for alle bøker */
+.bok {
+    width: 50px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    transition: transform 0.2s;
+    border: 1px solid #3e1e05;
+    z-index: 0;
+}
+
+.bok:hover {
+    transform: translateY(-10px);
+}
+
+/* 1. FOTOALBUM (Bilder) med gullstriper */
+.bokhylle .album {
+    background-color: #8b0000;
+    color: #000000;
+    border-left: 5px solid #5d0000;
+    height: 200px;
+    position: relative;
+
+    
+    background-image: linear-gradient(
+        to bottom, 
+        transparent 20%, 
+        #ca9b1a 20%, #ffd700 22%, 
+        transparent 22%, 
+        transparent 45%, 
+        #ca9b1a 45%, #ffd700 47%, 
+        transparent 47%, 
+        transparent 75%, 
+        #ca9b1a 75%, #ffd700 77%, 
+        transparent 77%
+    );
+}
+
+.album::after {
+    content: "";
+    position: absolute;
+    top: 90px;            /* Plassering fra toppen */
+    left: -25px;            /* Plassering fra venstre */
+    width: 100px;          /* Bredde på teipen */
+    height: 18px;         /* Høyde på teipen */
+    background-color: rgba(255, 255, 255, 0.9); /* Halvgjennomsiktig hvit/matt */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transform: rotate(-90deg); 
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    pointer-events: none; /* Gjør at teipen ikke blokkerer klikk på linken */
+    
+    
+    z-index: -1;
+}
+
+.album::before {
+    content: "";
+    position: absolute;
+    /* Plassering basert på den roterte teipen din */
+    top: 150px;  /* Juster denne for å treffe toppen av teipen */
+    left: 16px; /* Juster denne for å treffe venstre side */
+    width: 18px;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    
+    /* Histogram-form (taggete) */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 80%, 40% 100%, 10% 80%, 0% 100%);
+    
+    transform: rotate(0deg);
+    z-index: 2; /* Ligger over hovedteipen */
+    pointer-events: none;
+}
+
+
+/* 2. NOTEBLOCK (Notiser) */
+.notat {
+    background-color: #fdfd96; /* Gul notatblokk-farge */
+    color: #333;
+    background-image: linear-gradient(transparent 19px, #ccc 20px);
+    background-size: 100% 20px; /* Lager linjene på blokka */
+    border-left: 5px solid #d1d17d;
+    height: 50px;
+    writing-mode: horizontal-tb;
+
+}
+
+/* 3. GJESTEBOK (Bok) */
+.gjestebok {
+    background-color: #4070a0; /* Mørk blå/svart bok */
+    border-left: 5px solid #1a252f;
+    box-shadow: inset 10px 0 10px rgba(0,0,0,0.2); /* Gir følelsen av bokrygg */
+    height: 160px;
+}
+
+.teip-topp {
+    position: absolute;
+    /* Du må justere 'top' og 'left' her til den treffer motsatt ende */
+    top: 29px;   /* Juster denne til den sitter på den andre siden */
+    left: 16px; 
+    
+    width: 18px;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    
+    /* Samme taggete form */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 80%, 40% 100%, 10% 80%, 0% 100%);
+    
+    /* Siden denne skal sitte i motsatt ende, roterer vi den 180 grader */
+    transform: rotate(180deg); 
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Dette er for galleriet ditt */
+.galleri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Definer en container for bildet */
+.galleri-grid img {
+    width: 300px;        /* Du kan justere denne bredden som du vil */
+    height: 200px;       /* Fast høyde */
+    object-fit: cover;   /* Dette gjør at bildet fyller boksen uten å bli deformert */
+    display: block;
+    margin-bottom: 10px;
+    border: 15px solid #ffffff; /* Legg til en ramme hvis du vil */
+    outline: 5px solid #54321f;
+}
+
+
+
+.album-kort img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}

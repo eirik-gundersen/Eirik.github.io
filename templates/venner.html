@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Venner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stil.css') }}">
+</head>
+<body>
+
+<nav class="hoved-nav">
+    <div class="nav-venstre">
+        <a href="{{ url_for('hjem') }}" class="hjem-knapp">⛺︎ </a>
+        <a href="{{ url_for('bilder') }}" class="nav-knapp">Bilder</a>
+        <a href="{{ url_for('notiser') }}" class="nav-knapp">Notiser</a>
+        <a href="{{ url_for('oppskrifter') }}" class="nav-knapp">Oppskrifter</a>
+        <a href="{{ url_for('venner') }}" class="nav-knapp">Venner</a>
+        <a href="{{ url_for('gjestebok') }}" class="nav-knapp">Gjestebok</a>
+        <a href="{{ url_for('ikke_trykk') }}" class="nav-knapp hemmelig-knapp"> ikke trykk!</a>
+    </div>
+
+    <div class="nav-tittel">
+        {% if request.endpoint == 'hjem' %} Forside
+        {% elif request.endpoint == 'bilder' %} Bilder
+        {% elif request.endpoint == 'notiser' %} Notiser
+        {% elif request.endpoint == 'oppskrifter' %} Oppskrifter
+        {% elif request.endpoint == 'venner' %} Venner
+        {% elif request.endpoint == 'gjestebok' %} Gjestebok
+        {% elif request.endpoint == 'ikke_trykk' %} ⚠️ Hemmelig side
+        {% else %} Min Nettside
+        {% endif %}
+    </div>
+
+    <div class="nav-navn">
+        Eirik Gundersen
+    </div>
+</nav>
+<hr style="border: 0; border-top: 2px solid #000000; margin-bottom: 30px;">
+
+ <div class="venner-container">
+        
+        <a href="https://miwumo.com/" target="_blank" class="venne-kort-lenke">
+            <div class="venne-kort">
+                <h3>Mikkel 🌐</h3>
+                <p>Besøk nettsiden til Mikkel Moltu! Klikk her for å se hva de har laget.</p>
+            </div>
+        </a>
+
+        <a href="https://www.venn2sinnetside.no" target="_blank" class="venne-kort-lenke">
+            <div class="venne-kort">
+                <h3>Kasper 🌐</h3>
+                <p>Klikk her for å hoppe over til Kasper Larsson hjemsted.</p>
+            </div>
+        </a>
+
+    </div>
+    </div>
+
+</body>
+</html>

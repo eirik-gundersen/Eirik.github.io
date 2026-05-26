@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Min blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stil.css') }}">
+</head>
+
+<body>
+
+    <nav class="hoved-nav">
+        <div class="nav-venstre">
+            <a href="{{ url_for('hjem') }}" class="hjem-knapp">⛺︎</a>
+            <a href="{{ url_for('vis_oversikt') }}" class="nav-knapp">Bilder</a>
+            <a href="{{ url_for('notiser') }}" class="nav-knapp">Notiser</a>
+            <a href="{{ url_for('gjestebok') }}" class="nav-knapp">Gjestebok</a>
+            <a href="{{ url_for('ikke_trykk') }}" class="nav-knapp hemmelig-knapp"> ikke trykk!</a>
+        </div>
+    
+        <div class="nav-tittel">Forside</div>
+
+        <div class="nav-navn">Eirik Gundersen</div>
+    </nav>
+    
+    <hr style="border: 0; border-top: 2px solid #000000; margin-bottom: 30px;">
+
+    <main>
+        <h1 style="text-align: center;">Velkommen til denne kreative og intellektuelle opplevelsen!</h1>
+        <p style="text-align: center;">Nå har du rotet deg bort på world wide web. Dette er altså min personlige nettside. <br>
+        Hot tips er å sjekke ut fotoalbumet i bokhylla nedenfor, og etter du har gjort det så må du innom gjesteboka! <br>
+        Notisen er hvis du føler deg intellektuell og smart. Kanskje du kan bidra til noe der? 
+        </p> 
+
+        <div class="hjem-container">
+            <div class="hjem-bilde">
+                <p>Hei. Dette er altså meg, på ski, i tromsø. hehe. ☟</p>
+                <img src="{{ url_for('static', filename='bilder/forside/ski,eirik.jpg') }}" alt="Meg på ski">
+            </div>
+
+            <div class="hjem-hylle">
+                <div class="bokhylle">
+                    <a href="{{ url_for('vis_oversikt') }}" class="bok album">
+                        <div class="bok-rygg">FOTOALBUM</div>
+                        <span class="teip-topp"></span>
+                    </a>
+                    <a href="{{ url_for('gjestebok') }}" class="bok gjestebok">
+                        <div class="bok-rygg">GJESTEBOKA</div>
+                    </a>
+                    <a href="{{ url_for('notiser') }}" class="bok notat">
+                        <div class="bok-rygg">NOTIS</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

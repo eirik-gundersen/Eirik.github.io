@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>IKKE TRYKK!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stil.css') }}">
+    
+    <style>
+        /* Vi styler "troll-knappen" vår her */
+        #rinknapp {
+            position: absolute;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s ease; /* Gjør at flyttingen ser smooth ut */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-top: 50px;">Hvorfor trykket du..? ☹︎</h1>
+    <p style="text-align: center; color: #666;">Prøv å komme deg hjem hvis du kan!</p>
+
+    <button id="rinknapp">Hjem</button>
+
+    <script>
+        const knapp = document.getElementById('rinknapp');
+
+        // Denne funksjonen fyrer av hver gang musa beveger seg over knappen
+        knapp.addEventListener('mouseover', function() {
+            // Finn ut hvor bred og høy nettleservinduet er akkurat nå
+            const vinduBredde = window.innerWidth - knapp.clientWidth;
+            const vinduHoyde = window.innerHeight - knapp.clientHeight;
+
+            // Generer tilfeldige koordinater innenfor skjermen
+            const nyX = Math.floor(Math.random() * vinduBredde);
+            const nyY = Math.floor(Math.random() * vinduHoyde);
+
+            // Flytt knappen til de nye koordinatene
+            knapp.style.left = nyX + 'px';
+            knapp.style.top = nyY + 'px';
+            
+            // Fjern sentreringen så den ikke hopper tilbake
+            knapp.style.transform = 'none';
+        });
+
+        // HVIS de mot formodning klarer å klikke på den, blir de sendt hjem
+        knapp.addEventListener('click', function() {
+            window.location.href = "{{ url_for('hjem') }}";
+        });
+
+        // JUKSETRIKS: Pusher den nåværende siden inn i historikken hele tiden
+        history.pushState(null, null, location.href);
+        
+        // Hver gang brukeren trykker på "Tilbake"-pilen i nettleseren...
+        window.addEventListener('popstate', function () {
+            // ...så dytter vi dem bare rett tilbake til denne siden igjen!
+            history.pushState(null, null, location.href);
+            alert("Du trodde du var lur? Kan ikke lure en luring. Du MÅ fange Hjem-knappen!");
+
+        });
+    </script>
+
+</body>
+</html>

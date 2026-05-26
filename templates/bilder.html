@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Mine Bilder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stil.css') }}">
+</head>
+<body>
+
+    <nav class="hoved-nav">
+        <div class="nav-venstre">
+            <a href="{{ url_for('hjem') }}" class="hjem-knapp">⛺︎</a>
+            <a href="{{ url_for('vis_oversikt') }}" class="nav-knapp">Bilder</a>
+            <a href="{{ url_for('notiser') }}" class="nav-knapp">Notiser</a>
+            <a href="{{ url_for('gjestebok') }}" class="nav-knapp">Gjestebok</a>
+            <a href="{{ url_for('ikke_trykk') }}" class="nav-knapp hemmelig-knapp"> ikke trykk!</a>
+        </div>
+        <div class="nav-tittel">Bilder</div>
+        <div class="nav-navn">Eirik Gundersen</div>
+    </nav>
+    
+    <hr style="border: 0; border-top: 2px solid #000000; margin-bottom: 30px;">
+
+    <main>
+        <h1>Galleriet</h1>
+        <p>Nå er du på riktig plass! Her kommer det utvalgte album med bilder jeg har tatt!! <br>
+            Bruker et Fujifilm X100V for å ta de fleste, har blitt tatt av hypen rundt det kamera as.
+        </p>
+
+        <p>Gjerne klikk på en av bildene under for å sjekke resten av de!</p>
+        <!-- Her kan jeg skrive litt tekst for å endre ^^ -->
+        <a href="{{ url_for('hjem') }}">Tilbake til forsiden</a>
+
+        <div class="galleri-grid">
+            {% for kat in kategorier %}
+            <a href="{{ url_for('vis_galleri', kategori=kat) }}" class="album-link">
+                <div class="album-kort">
+                     {% set forside = finn_forsidebilde(kat) %}
+                     {% if forside %}
+                        <img src="{{ url_for('static', filename='bilder/galleri/' + kat + '/' + forside) }}" class="galleri-bilde">
+                     {% endif %}
+                     <h3>{{ navne_liste.get(kat, kat) }}</h3>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Gjestebok</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stil.css') }}">
+</head>
+
+<body>
+
+    <nav class="hoved-nav">
+        <div class="nav-venstre">
+            <a href="{{ url_for('hjem') }}" class="hjem-knapp">⛺︎ </a>
+            <a href="{{ url_for('vis_oversikt') }}" class="nav-knapp">Bilder</a>
+            <a href="{{ url_for('notiser') }}" class="nav-knapp">Notiser</a>
+            <a href="{{ url_for('gjestebok') }}" class="nav-knapp">Gjestebok</a>
+            <a href="{{ url_for('ikke_trykk') }}" class="nav-knapp hemmelig-knapp"> ikke trykk!</a>
+        </div>
+
+        <div class="nav-tittel">Gjestebok</div>
+
+        <div class="nav-navn">Eirik Gundersen</div>
+    </nav>
+    
+    <hr style="border: 0; border-top: 2px solid #000000; margin-bottom: 30px;">
+
+    <main>
+        <h1>Skriv i boka! ☟✍︎</h1>
+
+        <form action="{{ url_for('gjestebok') }}" method="POST">
+            <p>
+                <label>Navn:</label><br>
+                <input type="text" name="bruker_navn" required>
+            </p>
+            <p>
+                <label>En morsom vits kanskje?:</label><br>
+                <textarea name="bruker_melding" required></textarea>
+            </p>
+            <button type="submit">Publiser</button>
+        </form>
+
+        <hr>
+
+        <h2>Tidligere skrifter:</h2>
+        {% for innlegg in meldinger|reverse %}
+            <div class="innlegg" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                <div style="flex-grow: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <strong>{{ innlegg.navn }}</strong>
+                        <span style="color: #aaa; font-size: 0.75em;">{{ innlegg.tid }}</span>
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <em>"{{ innlegg.melding }}"</em>
+                    </div>
+                </div>
+                
+                {% if admin_modus %}
+                    <form action="{{ url_for('slett_hilsen', id=loop.index0) }}" method="POST" style="margin: 0; display: flex; gap: 5px; align-items: center;">
+                        <input type="password" name="admin_kode" placeholder="Kode" required 
+                               style="padding: 5px; border: 1px solid #ccc; border-radius: 3px; width: 70px;">
+                        <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">
+                            Slett
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>Ingen har skrevet i gjesteboken ennå. Bli den første!</p>
+        {% endfor %}
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Notiser</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stil.css') }}">
+</head>
+
+<body>
+
+    <nav class="hoved-nav">
+        <div class="nav-venstre">
+            <a href="{{ url_for('hjem') }}" class="hjem-knapp">⛺︎ </a>
+            <a href="{{ url_for('vis_oversikt') }}" class="nav-knapp">Bilder</a>
+            <a href="{{ url_for('notiser') }}" class="nav-knapp">Notiser</a>
+            <a href="{{ url_for('gjestebok') }}" class="nav-knapp">Gjestebok</a>
+            <a href="{{ url_for('ikke_trykk') }}" class="nav-knapp hemmelig-knapp"> ikke trykk!</a>
+        </div>
+
+        <div class="nav-tittel">
+            Notiser
+        </div>
+
+        <div class="nav-navn">Eirik Gundersen</div>
+    </nav>
+    
+    <hr style="border: 0; border-top: 2px solid #000000; margin-bottom: 30px;">
+
+    <main>
+        <h1>Notiser</h1>
+        <p>Her kommer utrolige tankevekkere i fremtiden.</p>
+        
+        <a href="{{ url_for('hjem') }}">Forsiden</a>
+    </main>
+
+</body>
+</html>
